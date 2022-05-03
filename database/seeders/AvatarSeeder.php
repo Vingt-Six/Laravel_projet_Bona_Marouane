@@ -17,9 +17,29 @@ class AvatarSeeder extends Seeder
     {
         DB::table('avatars')->insert([
             [
-                "name" => "Blue Avatar",
+                "name" => "Anonyme",
                 "src" => "anonym_user.png"
-            ]
+            ],
+            [
+                "name" => "Student",
+                "src" => "student.png"
+            ],
+            [
+                "name" => "Cozy student",
+                "src" => "cozy.png"
+            ],
+            [
+                "name" => "Bear with a gun",
+                "src" => "beargun.png"
+            ],
+            [
+                "name" => "Fake worker",
+                "src" => "fakeworker.jpg"
+            ],
+            [
+                "name" => "Worker",
+                "src" => "worker.png"
+            ],
         ]);
     }
 }
