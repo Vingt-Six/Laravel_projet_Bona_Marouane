@@ -19,6 +19,32 @@
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
             </div>
 
+            <!-- FirstName -->
+            <div>
+                <x-label for="firstname" :value="__('FirstName')" />
+
+                <x-input id="firstname" class="block mt-1 w-full" type="text" name="firstname" :value="old('firstname')" required autofocus />
+            </div>
+
+            <!-- Age -->
+            <div>
+                <x-label for="age" :value="__('Age')" />
+
+                <x-input id="age" class="block mt-1 w-full" type="number" name="age" :value="old('age')" required autofocus />
+            </div>
+
+            <!-- Avatar_id -->
+            <div>
+                <x-label for="avatar" :value="__('Avatar')" />
+
+                <select name="avatar_id" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full">
+                    <option selected>Select Avatar</option>
+                    @foreach ($avatars as $avatar)
+                        <option value="{{ $avatar->id }}">{{ $avatar->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
             <!-- Email Address -->
             <div class="mt-4">
                 <x-label for="email" :value="__('Email')" />

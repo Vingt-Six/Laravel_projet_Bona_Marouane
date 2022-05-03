@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('firstname');
-            $table->string('age');
+            $table->integer('age');
             $table->foreignId('avatar_id')->constrained();
             $table->foreignId('role_id')->default(2)->constrained();
             $table->string('email')->unique();

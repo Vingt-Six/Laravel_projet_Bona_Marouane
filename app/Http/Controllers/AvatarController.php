@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Avatar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AvatarController extends Controller
 {
@@ -24,7 +25,7 @@ class AvatarController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -35,7 +36,12 @@ class AvatarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $store = new Avatar();
+        $store -> name = $request -> name;
+        $store -> src = $request->file('src')->hashName();
+        Storage::put('public/', $request->file('src'));
+        $store -> save();
+        return redirect()->back();
     }
 
     /**

@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('avatars', function (Blueprint $table) {
             $table->id();
-            $table->string('avatar');
+            $table->string('name');
+            $table->string('src');
             $table->timestamps();
         });
     }
