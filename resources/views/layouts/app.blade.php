@@ -24,7 +24,7 @@
         <div class="flex flex-col w-80 h-screen py-8 bg-white border-r dark:bg-gray-800 dark:border-gray-600">
             @include('layouts.navigation')
         </div>
-        <div class="min-h-screen w-full bg-slate-50">
+        <div class="min-h-screen w-full bg-slate-50 h-screen overflow-scroll">
             <!-- Page Heading -->
             <header class="bg-gray-600 shadow">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">

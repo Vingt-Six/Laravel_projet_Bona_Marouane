@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\AvatarController;
+use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -22,5 +26,16 @@ Route::get('/dashboard', function () {
     $users = User::all();
     return view('dashboard', compact('users'));
 })->middleware(['auth'])->name('dashboard');
+
+Route::resource('avatar', AvatarController::class);
+
+// user route
+Route::resource('user', UserController::class);
+Route::get('/user/{id}/edituser', [UserController::class, 'edituser']);
+Route::put('/user/{id}/updateuser', [UserController::class, 'updateuser']);
+
+
+Route::resource('categorie', CategorieController::class);
+Route::resource('galerie', ImageController::class);
 
 require __DIR__.'/auth.php';

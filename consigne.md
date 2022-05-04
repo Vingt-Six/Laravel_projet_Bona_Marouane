@@ -1,6 +1,6 @@
 # Consigne :
 ~~Au moment de l'enregistrement : laisser les champs de base + ajouter prénom, âge, choix d'un avatar (select) parmi une liste d'avatar~~
-* Sur la page Dashboard, afficher toutes les données de la personne connectée (possibilité de modifier les données perso) + ajouter 4 onglets dans un menu vertical :
+~~Sur la page Dashboard, afficher toutes les données de la personne connectée (possibilité de modifier les données perso) + ajouter 4 onglets dans un menu vertical~~
 * avatars : Afficher simplement les avatars. Possibilité d'ajouter un avatar (c'est une image) avec un champ pour le nom de l'avatar et un button pour le supprimer.
 * images : C'est une page qui permet d'ajouter des 'images' (ne pas confondre avec les images de l'onglet 'avatar'), laisser la possibilité de choisir dans quelle catégorie on enregistre l'image
 * catégories : Afficher les la listes des catégories avec btn add , edit et delete

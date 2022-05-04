@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Avatar;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 
 class UserController extends Controller
 {
@@ -13,7 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        return view('pages.user.user', compact('users'));
     }
 
     /**
@@ -45,7 +49,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $show = User::find($id);
+        return view('pages.user.show', compact('show'));
     }
 
     /**
@@ -56,7 +61,16 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $edit = User::find($id);
+        $avatars = Avatar::all();
+        return view('pages.user.edit', compact('edit', 'avatars'));
+    }
+
+    public function edituser($id)
+    {
+        $edit = User::find($id);
+        $avatars = Avatar::all();
+        return view('pages.user.edituser', compact('edit', 'avatars'));
     }
 
     /**
@@ -68,7 +82,26 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $update = User::find($id);
+        $update -> name = $request -> name;
+        $update -> firstname = $request -> firstname;
+        $update -> age = $request -> age;
+        $update -> email = $request -> email;
+        $update -> avatar_id = $request -> avatar_id;
+        $update -> save();
+        return redirect('/dashboard');
+    }
+
+    public function updateuser(Request $request, $id)
+    {
+        $updateuser = User::find($id);
+        $updateuser -> name = $request -> name;
+        $updateuser -> firstname = $request -> firstname;
+        $updateuser -> age = $request -> age;
+        $updateuser -> email = $request -> email;
+        $updateuser -> avatar_id = $request -> avatar_id;
+        $updateuser -> save();
+        return redirect('/user');
     }
 
     /**
@@ -79,6 +112,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = User::find($id);
+        $delete -> delete();
+        return redirect()->back();
     }
 }
