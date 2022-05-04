@@ -87,6 +87,7 @@ class AvatarController extends Controller
      */
     public function destroy(Avatar $avatar)
     {
-        //
+        $avatar -> delete();
+        return redirect()->back();
     }
 }

@@ -25,7 +25,8 @@ class ImageController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('admin');
+        return view('pages.image.createimage');
     }
 
     /**
@@ -36,7 +37,7 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

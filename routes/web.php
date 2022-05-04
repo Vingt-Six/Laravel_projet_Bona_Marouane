@@ -4,6 +4,7 @@ use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\UserController;
+use App\Models\Avatar;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -23,8 +24,9 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
+    $avatar = Avatar::all();
     $users = User::all();
-    return view('dashboard', compact('users'));
+    return view('dashboard', compact('users', 'avatar'));
 })->middleware(['auth'])->name('dashboard');
 
 Route::resource('avatar', AvatarController::class);

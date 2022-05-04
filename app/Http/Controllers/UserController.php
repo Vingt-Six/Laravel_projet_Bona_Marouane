@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Avatar;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
@@ -17,7 +18,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('pages.user.user', compact('users'));
+        $avatars = Avatar::all();
+        return view('pages.user.user', compact('users', 'avatars'));
     }
 
     /**
@@ -50,7 +52,9 @@ class UserController extends Controller
     public function show($id)
     {
         $show = User::find($id);
-        return view('pages.user.show', compact('show'));
+        $this->authorize('admin-user', $show);
+        $avatar = Avatar::all();
+        return view('pages.user.show', compact('show', 'avatar'));
     }
 
     /**
@@ -62,6 +66,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $edit = User::find($id);
+        $this->authorize('admin-user', $edit);
         $avatars = Avatar::all();
         return view('pages.user.edit', compact('edit', 'avatars'));
     }
@@ -69,8 +74,10 @@ class UserController extends Controller
     public function edituser($id)
     {
         $edit = User::find($id);
+        $this->authorize('admin-user', $edit);
         $avatars = Avatar::all();
-        return view('pages.user.edituser', compact('edit', 'avatars'));
+        $roles = Role::all();
+        return view('pages.user.edituser', compact('edit', 'avatars', 'roles'));
     }
 
     /**
@@ -95,6 +102,7 @@ class UserController extends Controller
     public function updateuser(Request $request, $id)
     {
         $updateuser = User::find($id);
+        $this->authorize('admin-user', $updateuser);
         $updateuser -> name = $request -> name;
         $updateuser -> firstname = $request -> firstname;
         $updateuser -> age = $request -> age;
@@ -113,6 +121,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         $delete = User::find($id);
+        $this->authorize('admin-user', $delete);
         $delete -> delete();
         return redirect()->back();
     }

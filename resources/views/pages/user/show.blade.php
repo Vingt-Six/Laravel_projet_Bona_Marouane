@@ -7,8 +7,13 @@
 
 
     <div class="max-w-sm mx-auto overflow-hidden rounded-lg shadow-lg bg-gray-800 w-96 mt-20">
-        <img class="object-cover object-center w-full h-56" src="{{ asset('storage/' . $show->avatar->src) }}"
-            alt="avatar">
+        @if ($show->avatar_id == null)
+            <img class="object-cover object-center w-full h-56" src="{{ asset('storage/' . $avatar[0]->src) }}"
+                alt="avatar">
+        @else
+            <img class="object-cover object-center w-full h-56" src="{{ asset('storage/' . $show->avatar->src) }}"
+                alt="avatar">
+        @endif
 
         <div class="flex items-center px-6 py-3 bg-gray-900">
             <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 24 24" fill="none"
@@ -59,16 +64,23 @@
             </div>
 
             <div class="flex items-center mt-4 text-gray-700 dark:text-gray-200">
-                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M7 7C5.34315 7 4 8.34315 4 10C4 11.6569 5.34315 13 7 13C8.65685 13 10 11.6569 10 10C10 8.34315 8.65685 7 7 7ZM6 10C6 9.44772 6.44772 9 7 9C7.55228 9 8 9.44772 8 10C8 10.5523 7.55228 11 7 11C6.44772 11 6 10.5523 6 10Z"
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M10.9759 9C10.9759 9.55228 10.5282 10 9.97589 10C9.42361 10 8.97589 9.55228 8.97589 9C8.97589 8.44771 9.42361 8 9.97589 8C10.5282 8 10.9759 8.44771 10.9759 9Z"
+                        fill="currentColor" />
+                    <path
+                        d="M13.9712 10C14.5235 10 14.9712 9.55228 14.9712 9C14.9712 8.44771 14.5235 8 13.9712 8C13.4189 8 12.9712 8.44771 12.9712 9C12.9712 9.55228 13.4189 10 13.9712 10Z"
                         fill="currentColor" />
                     <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M3 3C1.34315 3 0 4.34315 0 6V18C0 19.6569 1.34315 21 3 21H21C22.6569 21 24 19.6569 24 18V6C24 4.34315 22.6569 3 21 3H3ZM21 5H3C2.44772 5 2 5.44772 2 6V18C2 18.5523 2.44772 19 3 19H7.31374L14.1924 12.1214C15.364 10.9498 17.2635 10.9498 18.435 12.1214L22 15.6863V6C22 5.44772 21.5523 5 21 5ZM21 19H10.1422L15.6066 13.5356C15.9971 13.145 16.6303 13.145 17.0208 13.5356L21.907 18.4217C21.7479 18.7633 21.4016 19 21 19Z"
+                        d="M19 20.9999V10C19 6.13401 15.866 3 12 3C8.13401 3 5 6.13401 5 10V21L7.82846 21L9.24264 19.5858L10.6569 21L13.3433 21L14.7574 19.5858L16.1717 21L19 20.9999ZM17 10C17 7.23858 14.7614 5 12 5C9.23858 5 7 7.23858 7 10V19L9.24264 16.7573L12 19.5147L14.7574 16.7573L17 18.9999V10Z"
                         fill="currentColor" />
                 </svg>
 
+                @if ($show->avatar_id == null)
+                <h1 class="px-2 text-sm">{{ $avatar[0]->name }}</h1>
+                @else
                 <h1 class="px-2 text-sm">{{ $show->avatar->name }}</h1>
+                @endif
             </div>
 
             <div class="flex items-center mt-4 text-gray-700 dark:text-gray-200">

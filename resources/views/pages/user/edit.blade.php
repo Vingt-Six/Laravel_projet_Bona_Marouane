@@ -5,25 +5,25 @@
         </h2>
     </x-slot>
 
-    <form action="/user/{{ $edit->id }}" method="POST">
+    <form action="/user/{{ Auth::user()->id }}" method="POST">
         @csrf
         @method('PUT')
         <div class="mx-40 mt-24">
             <div class="flex flex-col">
                 <label for="">Name</label>
-                <input type="text" name="name" id="" class="rounded-lg" value="{{ $edit->name }}">
+                <input type="text" name="name" id="" class="rounded-lg" value="{{ Auth::user()->name }}">
             </div>
             <div class="flex flex-col mt-3">
                 <label for="">FirstName</label>
-                <input type="text" name="firstname" id="" class="rounded-lg" value="{{ $edit->firstname }}">
+                <input type="text" name="firstname" id="" class="rounded-lg" value="{{ Auth::user()->firstname }}">
             </div>
             <div class="flex flex-col mt-3">
                 <label for="">Age</label>
-                <input type="number" name="age" id="" class="rounded-lg" value="{{ $edit->age }}">
+                <input type="number" name="age" id="" class="rounded-lg" value="{{ Auth::user()->age }}">
             </div>
             <div class="flex flex-col mt-3">
                 <label for="">Email</label>
-                <input type="text" name="email" id="" class="rounded-lg" value="{{ $edit->email }}">
+                <input type="text" name="email" id="" class="rounded-lg" value="{{ Auth::user()->email }}">
             </div>
             <div class="flex flex-col mt-3">
                 <label for="">Avatar</label>
@@ -31,7 +31,7 @@
                     @foreach ($avatars as $avatar)
                         @if ($avatar->id != 1)
                             <option value="{{ $avatar->id }}"
-                                {{ $avatar->id == $edit->avatar_id ? 'selected' : null }}>{{ $avatar->name }}
+                                {{ $avatar->id == Auth::user()->avatar_id ? 'selected' : null }}>{{ $avatar->name }}
                             </option>
                         @endif
                     @endforeach

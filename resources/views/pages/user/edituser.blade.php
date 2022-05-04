@@ -37,6 +37,16 @@
                     @endforeach
                 </select>
             </div>
+            <div class="flex flex-col mt-3">
+                <label for="">Avatar</label>
+                <select name="avatar_id" id="" class="rounded-lg">
+                    @foreach ($roles as $role)
+                        <option value="{{ $role->id }}"
+                            {{ $role->id == $edit->role_id ? 'selected' : null }}>{{ $role->role }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
             <div class="flex justify-center">
                 <button type="submit"
                     class="border-[1px] rounded-lg w-5/6 h-10 border-green-500 hover:bg-green-500 hover:text-white transition-colors duration-200 transform mt-10">Update</button>

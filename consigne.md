@@ -4,8 +4,9 @@
 * avatars : Afficher simplement les avatars. Possibilité d'ajouter un avatar (c'est une image) avec un champ pour le nom de l'avatar et un button pour le supprimer.
 * images : C'est une page qui permet d'ajouter des 'images' (ne pas confondre avec les images de l'onglet 'avatar'), laisser la possibilité de choisir dans quelle catégorie on enregistre l'image
 * catégories : Afficher les la listes des catégories avec btn add , edit et delete
-* Gallérie : Afficher les images sous forme de gallerie avec un button 'téléchargeables'
-* Utilisateurs : Afficher tout les utilisateurs. On peut changer leurs données( le rôle aussi) sauf les users dont le rôles est admin.
+* Gallérie : Afficher les images sous forme de gallerie avec un button téléchargeables
+
+~~Utilisateurs : Afficher tout les utilisateurs. On peut changer leurs données( le rôle aussi) sauf les users dont le rôles est admin.~~
 
 # Fonctionnement :
 * Au moment du register, l'user a la possibilité de choisir un avatar parmi une liste d'avatar. Son rôle sera 'membre' par défaut à l'enregistrement
