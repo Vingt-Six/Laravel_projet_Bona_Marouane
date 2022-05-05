@@ -21,24 +21,24 @@ class AvatarSeeder extends Seeder
                 "src" => "anonym_user.png"
             ],
             [
-                "name" => "Student",
-                "src" => "student.png"
+                "name" => "A Happy Kid",
+                "src" => "happykid.png"
             ],
             [
-                "name" => "Cozy student",
-                "src" => "cozy.png"
+                "name" => "The Golf Master",
+                "src" => "golf.png"
             ],
             [
-                "name" => "Bear with a gun",
-                "src" => "beargun.png"
+                "name" => "Boss Pingu",
+                "src" => "pingu.png"
             ],
             [
-                "name" => "Fake worker",
-                "src" => "fakeworker.jpg"
+                "name" => "The Healthy Boy",
+                "src" => "sportboy.png"
             ],
             [
-                "name" => "Worker",
-                "src" => "worker.png"
+                "name" => "Study",
+                "src" => "study.png"
             ],
         ]);
     }

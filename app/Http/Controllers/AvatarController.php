@@ -26,7 +26,7 @@ class AvatarController extends Controller
      */
     public function create()
     {
-        
+        return view('pages.avatar.createavatar');
     }
 
     /**
@@ -88,6 +88,9 @@ class AvatarController extends Controller
     public function destroy(Avatar $avatar)
     {
         $avatar -> delete();
+        if ($avatar->id > 6) {
+            Storage::delete('public/'. $avatar->src);
+        }
         return redirect()->back();
     }
 }

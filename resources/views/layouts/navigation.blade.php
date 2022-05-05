@@ -5,13 +5,13 @@
                 <button
                     class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
 
-                    @if (Auth::user()->avatar_id == null)
-                    <img class="object-cover w-24 h-24 mx-2 rounded-full"
-                    src="{{ asset('storage/anonym_user.png') }}" alt="avatar">
-                    @else
-                    <img class="object-cover w-24 h-24 mx-2 rounded-full"
-                    src="{{ asset('storage/' . Auth::user()->avatar->src) }}" alt="avatar">
-                    @endif
+                        @if (Auth::user()->avatar_id == null)
+                            <img class="object-cover w-24 h-24 mx-2 rounded-full"
+                                src="{{ asset('storage/anonym_user.png') }}" alt="avatar">
+                        @else
+                            <img class="object-cover w-24 h-24 mx-2 rounded-full"
+                                src="{{ asset('storage/' . Auth::user()->avatar->src) }}" alt="avatar">
+                        @endif
 
                     <div class="ml-1">
                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">

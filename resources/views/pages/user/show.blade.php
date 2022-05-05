@@ -7,12 +7,16 @@
 
 
     <div class="max-w-sm mx-auto overflow-hidden rounded-lg shadow-lg bg-gray-800 w-96 mt-20">
-        @if ($show->avatar_id == null)
-            <img class="object-cover object-center w-full h-56" src="{{ asset('storage/' . $avatar[0]->src) }}"
-                alt="avatar">
+        @if (str_contains($show->avatar->src, 'https'))
+            <img class="object-cover object-center w-full h-56" src="{{ $show->avatar->src }}" alt="avatar">
         @else
-            <img class="object-cover object-center w-full h-56" src="{{ asset('storage/' . $show->avatar->src) }}"
-                alt="avatar">
+            @if ($show->avatar_id == null)
+                <img class="object-cover object-center w-full h-56" src="{{ asset('storage/' . $avatar[0]->src) }}"
+                    alt="avatar">
+            @else
+                <img class="object-cover object-center w-full h-56" src="{{ asset('storage/' . $show->avatar->src) }}"
+                    alt="avatar">
+            @endif
         @endif
 
         <div class="flex items-center px-6 py-3 bg-gray-900">
@@ -77,9 +81,9 @@
                 </svg>
 
                 @if ($show->avatar_id == null)
-                <h1 class="px-2 text-sm">{{ $avatar[0]->name }}</h1>
+                    <h1 class="px-2 text-sm">{{ $avatar[0]->name }}</h1>
                 @else
-                <h1 class="px-2 text-sm">{{ $show->avatar->name }}</h1>
+                    <h1 class="px-2 text-sm">{{ $show->avatar->name }}</h1>
                 @endif
             </div>
 
