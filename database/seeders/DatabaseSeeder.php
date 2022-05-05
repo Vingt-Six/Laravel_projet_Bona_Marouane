@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             AvatarSeeder::class,
             UserSeeder::class,
+            CategorieSeeder::class,
         ]);
     }
 }

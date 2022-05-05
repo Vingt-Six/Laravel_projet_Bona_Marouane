@@ -21,8 +21,7 @@ Le rôle membre peut voir seulement son Dashboard avec son profil et l'onglet ga
 
 # A savoir:
 ~~2 rôles (admin et membre). Un utilisateur avec le rôle admin créer par défaut dans le seeder. Plusieurs catégories d'images (voiture, animal, tec, art, etc.)~~
-* On ne peut ajouter que 5 Avatars maximum
-
+~~On ne peut ajouter que 5 Avatars maximum~~
 ~~Si on supprimes un avatars cela attribue un avatar par défaut "anonyme" a tous les users raccrochés a l'avatar que l'on vient de supprimer~~
 ~~Si on supprimes un user cela ne supprime pas l'avatar raccroché~~
 * Si on supprimes une catégorie d'image cela supprime toutes les images raccrochés a cette catégorie

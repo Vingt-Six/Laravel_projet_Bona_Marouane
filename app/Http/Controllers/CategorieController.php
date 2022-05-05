@@ -25,7 +25,7 @@ class CategorieController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.categorie.createcategorie');
     }
 
     /**
@@ -36,7 +36,10 @@ class CategorieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $store = new Categorie();
+        $store -> categorie = $request -> categorie;
+        $store -> save();
+        return redirect('/categorie');
     }
 
     /**
@@ -58,7 +61,7 @@ class CategorieController extends Controller
      */
     public function edit(Categorie $categorie)
     {
-        //
+        return view('pages.categorie.editcategorie', compact('categorie'));
     }
 
     /**
@@ -70,7 +73,9 @@ class CategorieController extends Controller
      */
     public function update(Request $request, Categorie $categorie)
     {
-        //
+        $categorie -> categorie = $request -> categorie;
+        $categorie -> save();
+        return redirect('/categorie');
     }
 
     /**
@@ -81,6 +86,7 @@ class CategorieController extends Controller
      */
     public function destroy(Categorie $categorie)
     {
-        //
+        $categorie -> delete();
+        return redirect()->back();
     }
 }
