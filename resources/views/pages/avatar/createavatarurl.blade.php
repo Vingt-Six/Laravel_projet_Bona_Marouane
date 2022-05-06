@@ -9,7 +9,7 @@
         <div class="max-w-lg mx-auto">
             <h1 class="text-2xl font-bold text-center text-indigo-600 sm:text-3xl">Add a Avatar</h1>
 
-            <form action="/avatar" class="p-8 mt-6 mb-0 space-y-4 rounded-lg shadow-2xl" method="POST" enctype="multipart/form-data">
+            <form action="/avatar/url" class="p-8 mt-6 mb-0 space-y-4 rounded-lg shadow-2xl" method="POST">
                 @csrf
                 <div>
                     <label for="email" class="text-sm font-medium">Name of Avatar</label>
@@ -22,10 +22,10 @@
                 </div>
 
                 <div>
-                    <label for="password" class="text-sm font-medium">Password</label>
+                    <label for="URL" class="text-sm font-medium">URL</label>
 
                     <div class="relative mt-1">
-                        <input type="file" name="src" class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm" />
+                        <input type="text" name="url" class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm" placeholder="Enter a url"/>
                     </div>
                 </div>
 

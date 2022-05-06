@@ -28,15 +28,20 @@
                                 <td class="p-3 rounded-md">{{ $user->id }}</td>
                                 <td class="p-3 rounded-md">
                                     <div class="flex align-items-center">
-                                            @if ($user->avatar_id == null)
+                                        @if ($user->avatar_id == null)
+                                            <img class="rounded-full h-12 w-12  object-cover"
+                                                src="{{ asset('storage/' . $avatars[0]->src) }}" alt="unsplash image">
+                                        @else
+                                            @if ($user->avatar->src == null)
                                                 <img class="rounded-full h-12 w-12  object-cover"
-                                                    src="{{ asset('storage/' . $avatars[0]->src) }}"
+                                                    src="{{ asset('storage/' . $user->avatar->name . '.png') }}"
                                                     alt="unsplash image">
-                                            @else
+                                            @elseif ($user->avatar->url == null)
                                                 <img class="rounded-full h-12 w-12  object-cover"
                                                     src="{{ asset('storage/' . $user->avatar->src) }}"
                                                     alt="unsplash image">
                                             @endif
+                                        @endif
                                         <div class="ml-3">
                                             <div class="">{{ $user->name . ' ' . $user->firstname }}
                                             </div>

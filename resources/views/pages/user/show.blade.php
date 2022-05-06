@@ -7,12 +7,13 @@
 
 
     <div class="max-w-sm mx-auto overflow-hidden rounded-lg shadow-lg bg-gray-800 w-96 mt-20">
-        @if (str_contains($show->avatar->src, 'https'))
-            <img class="object-cover object-center w-full h-56" src="{{ $show->avatar->src }}" alt="avatar">
+        @if ($show->avatar_id == null)
+            <img class="object-cover object-center w-full h-56" src="{{ asset('storage/' . $avatar[0]->src) }}"
+                alt="avatar">
         @else
-            @if ($show->avatar_id == null)
-                <img class="object-cover object-center w-full h-56" src="{{ asset('storage/' . $avatar[0]->src) }}"
-                    alt="avatar">
+            @if ($show->avatar->src == null)
+                <img class="object-cover object-center w-full h-56"
+                    src="{{ asset('storage/' . $show->avatar->name . '.png') }}" alt="avatar">
             @else
                 <img class="object-cover object-center w-full h-56" src="{{ asset('storage/' . $show->avatar->src) }}"
                     alt="avatar">

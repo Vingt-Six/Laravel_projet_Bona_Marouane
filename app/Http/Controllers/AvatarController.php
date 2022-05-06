@@ -29,6 +29,11 @@ class AvatarController extends Controller
         return view('pages.avatar.createavatar');
     }
 
+    public function createurl()
+    {
+        return view('pages.avatar.createavatarurl');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -41,8 +46,21 @@ class AvatarController extends Controller
         $store -> name = $request -> name;
         $store -> src = $request->file('src')->hashName();
         Storage::put('public/', $request->file('src'));
+        $store -> url = null;
         $store -> save();
-        return redirect()->back();
+        return redirect('/avatar');
+    }
+
+    public function storeurl(Request $request)
+    {
+        $store = new Avatar();
+        $store -> name = $request -> name;
+        $file = $request->name . '.png';
+        $content = file_get_contents($request->url);
+        $store->url = file_put_contents('storage/'. $file, $content);
+        $store -> src = null;
+        $store -> save();
+        return redirect('/avatar');
     }
 
     /**

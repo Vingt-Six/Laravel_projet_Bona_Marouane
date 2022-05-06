@@ -7,13 +7,18 @@
 
 
     <div class="max-w-sm mx-auto overflow-hidden rounded-lg shadow-lg bg-gray-800 w-96 mt-20">
-            @if (Auth::user()->avatar_id == null)
-                <img class="object-cover object-center w-full h-56" src="{{ asset('storage/' . $avatar[0]->src) }}"
-                    alt="avatar">
-            @else
+        @if (Auth::user()->avatar_id == null)
+            <img class="object-cover object-center w-full h-56" src="{{ asset('storage/' . $avatar[0]->src) }}"
+                alt="avatar">
+        @else
+            @if (Auth::user()->avatar->src == null)
+                <img class="object-cover object-center w-full h-56"
+                    src="{{ asset('storage/' . Auth::user()->avatar->name . '.png') }}" alt="avatar">
+            @elseif (Auth::user()->avatar->url == null)
                 <img class="object-cover object-center w-full h-56"
                     src="{{ asset('storage/' . Auth::user()->avatar->src) }}" alt="avatar">
             @endif
+        @endif
         <div class="flex items-center px-6 py-3 bg-gray-900">
             <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 24 24" fill="none"
                 xmlns="http://www.w3.org/2000/svg">

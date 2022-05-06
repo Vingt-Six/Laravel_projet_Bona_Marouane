@@ -18,27 +18,33 @@ class AvatarSeeder extends Seeder
         DB::table('avatars')->insert([
             [
                 "name" => "Anonyme",
-                "src" => "anonym_user.png"
+                "src" => "anonym_user.png",
+                "url" => null
             ],
             [
                 "name" => "A Happy Kid",
-                "src" => "happykid.png"
+                "src" => "happykid.png",
+                "url" => null
             ],
             [
                 "name" => "The Golf Master",
-                "src" => "golf.png"
+                "src" => "golf.png",
+                "url" => null
             ],
             [
                 "name" => "Boss Pingu",
-                "src" => "pingu.png"
+                "src" => "pingu.png",
+                "url" => null
             ],
             [
                 "name" => "The Healthy Boy",
-                "src" => "sportboy.png"
+                "src" => "sportboy.png",
+                "url" => null
             ],
             [
                 "name" => "Study",
-                "src" => "study.png"
+                "src" => "study.png",
+                "url" => null
             ],
         ]);
     }

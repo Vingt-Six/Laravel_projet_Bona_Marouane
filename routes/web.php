@@ -30,6 +30,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::resource('avatar', AvatarController::class);
+Route::get('avatar/url/create', [AvatarController::class, 'createurl']);
+Route::post('avatar/url', [AvatarController::class, 'storeurl']);
 
 // user route
 Route::resource('user', UserController::class);
