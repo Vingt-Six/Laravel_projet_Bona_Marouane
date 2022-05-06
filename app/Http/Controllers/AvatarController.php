@@ -52,6 +52,7 @@ class AvatarController extends Controller
         ]);
 
         $store = new Avatar();
+        $this->authorize('max-avatar', $store);
         $store -> name = $request -> name;
         $store -> src = $request->file('src')->hashName();
         Storage::put('public/', $request->file('src'));
@@ -68,6 +69,7 @@ class AvatarController extends Controller
         ]);
 
         $store = new Avatar();
+        $this->authorize('max-avatar', $store);
         $store -> name = $request -> name;
         $file = $request->name . '.png';
         $content = file_get_contents($request->url);
