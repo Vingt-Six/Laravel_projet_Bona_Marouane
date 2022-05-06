@@ -40,6 +40,12 @@ Route::put('/user/{id}/updateuser', [UserController::class, 'updateuser']);
 
 
 Route::resource('categorie', CategorieController::class);
+
 Route::resource('galerie', ImageController::class);
+Route::get('/imageurl/create', [ImageController::class, 'createurl']);
+Route::post('/imageurl', [ImageController::class, 'storeurl']);
+Route::get('/choiceupload', [ImageController::class, 'indexchoice']);
+Route::get('/download/image/{id}', [ImageController::class, 'download']);
+Route::get('/download/url/{id}', [ImageController::class, 'downloadurl']);
 
 require __DIR__.'/auth.php';

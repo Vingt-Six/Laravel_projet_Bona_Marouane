@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
 use App\Models\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
@@ -18,6 +20,9 @@ class ImageController extends Controller
         return view('pages.galerie.galerie', compact('images'));
     }
 
+    public function indexchoice() {
+        return view('pages.image.choice');
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -25,8 +30,14 @@ class ImageController extends Controller
      */
     public function create()
     {
-        $this->authorize('admin');
-        return view('pages.image.createimage');
+        $categories = Categorie::all();
+        return view('pages.image.createimage', compact('categories'));
+    }
+
+    public function createurl()
+    {
+        $categories = Categorie::all();
+        return view('pages.image.createimageurl', compact('categories'));
     }
 
     /**
@@ -37,7 +48,27 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $store = new Image();
+        $store->name = $request->name;
+        $store -> src = $request->file('src')->hashName();
+        Storage::put('public/', $request->file('src'));
+        $store -> url = null;
+        $store->categorie_id = $request->categorie_id;
+        $store->save();
+        return redirect('/galerie');
+    }
+
+    public function storeurl(Request $request)
+    {
+        $store = new Image();
+        $store->name = $request->name;
+        $file = $request->name . '.png';
+        $content = file_get_contents($request->url);
+        $store->url = file_put_contents('storage/' . $file, $content);
+        $store->src = null;
+        $store->categorie_id = $request->categorie_id;
+        $store->save();
+        return redirect('/galerie');
     }
 
     /**
@@ -82,6 +113,20 @@ class ImageController extends Controller
      */
     public function destroy(Image $image)
     {
-        //
+        $image -> delete();
+        if ($image->id > 4) {
+            Storage::delete('public/'. $image->src);
+        }
+        return redirect()->back();
+    }
+
+    public function download($id) {
+        $download = Image::find($id);
+        return Storage::download('public/'. $download -> src);
+    }
+
+    public function downloadurl($id) {
+        $dl = Image::find($id);
+        return Storage::download('public/'. $dl -> name . '.png');
     }
 }
