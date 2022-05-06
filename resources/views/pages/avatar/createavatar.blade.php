@@ -17,7 +17,7 @@
                     <div class="relative mt-1"> 
                         <input type="text"
                             class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-                            placeholder="Enter a name" name="name" />
+                            placeholder="Enter a name" name="name" value="{{ old('name') }}"/>
                     </div>
                 </div>
 

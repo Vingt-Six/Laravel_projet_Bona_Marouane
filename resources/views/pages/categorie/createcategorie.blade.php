@@ -15,7 +15,7 @@
                 <form class="space-y-5" action="/categorie" method="POST">
                     @csrf
                     <div>
-                        <input type="text" name="categorie" class="block w-full py-3 px-3 mt-2 text-gray-800 appearance-none border-2 border-gray-100 focus:text-gray-500 focus:outline-none focus:border-gray-200 rounded-md" />
+                        <input type="text" name="categorie" value="{{ old('categorie') }}" class="block w-full py-3 px-3 mt-2 text-gray-800 appearance-none border-2 border-gray-100 focus:text-gray-500 focus:outline-none focus:border-gray-200 rounded-md" />
                     </div>
 
                     <button type="submit" class="w-full py-3 mt-10 bg-pink-500 hover:bg-pink-400 rounded-md font-medium text-white uppercase focus:outline-none hover:shadow-none">

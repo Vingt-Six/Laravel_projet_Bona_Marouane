@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
+    public function __construct() {
+        $this->middleware('admin.co')->except(['index','download', 'downloadurl']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -48,6 +51,12 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|min:1|max:30',
+            'src' => 'required',
+            'categorie_id' => 'required'
+        ]);
+
         $store = new Image();
         $store->name = $request->name;
         $store -> src = $request->file('src')->hashName();
@@ -55,11 +64,17 @@ class ImageController extends Controller
         $store -> url = null;
         $store->categorie_id = $request->categorie_id;
         $store->save();
-        return redirect('/galerie');
+        return redirect('/galerie')->with('success', 'Image ajouter dans la galerie avec succès');
     }
 
     public function storeurl(Request $request)
     {
+        $request->validate([
+            'name' => 'required|min:1|max:30',
+            'url' => 'required',
+            'categorie_id' => 'required'
+        ]);
+
         $store = new Image();
         $store->name = $request->name;
         $file = $request->name . '.png';
@@ -68,7 +83,7 @@ class ImageController extends Controller
         $store->src = null;
         $store->categorie_id = $request->categorie_id;
         $store->save();
-        return redirect('/galerie');
+        return redirect('/galerie')->with('success', 'Image ajouter dans la galerie avec succès');
     }
 
     /**
@@ -111,13 +126,14 @@ class ImageController extends Controller
      * @param  \App\Models\Image  $image
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Image $image)
+    public function destroy($id)
     {
-        $image -> delete();
+        $image = Image::find($id);
+        $image->delete();
         if ($image->id > 4) {
             Storage::delete('public/'. $image->src);
         }
-        return redirect()->back();
+        return redirect()->back()->with('danger', 'Image bien supprimer');
     }
 
     public function download($id) {

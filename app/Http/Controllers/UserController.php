@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\URL;
 
 class UserController extends Controller
 {
+    public function __construct() {
+        $this->middleware('admin.co');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -89,6 +92,14 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required|min:1|max:30',
+            'firstname' => 'required',
+            'age' => 'required',
+            'email' => 'required',
+            'avatar_id' => 'required',
+        ]);
+
         $update = User::find($id);
         $update -> name = $request -> name;
         $update -> firstname = $request -> firstname;
@@ -96,11 +107,19 @@ class UserController extends Controller
         $update -> email = $request -> email;
         $update -> avatar_id = $request -> avatar_id;
         $update -> save();
-        return redirect('/dashboard');
+        return redirect('/dashboard')->with('success', 'Le user a bien été modifer');
     }
 
     public function updateuser(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required|min:1|max:30',
+            'firstname' => 'required',
+            'age' => 'required',
+            'email' => 'required',
+            'avatar_id' => 'required',
+        ]);
+
         $updateuser = User::find($id);
         $this->authorize('admin-user', $updateuser);
         $updateuser -> name = $request -> name;
@@ -109,7 +128,7 @@ class UserController extends Controller
         $updateuser -> email = $request -> email;
         $updateuser -> avatar_id = $request -> avatar_id;
         $updateuser -> save();
-        return redirect('/user');
+        return redirect('/user')->with('success', 'Le user a bien été modifer');
     }
 
     /**
@@ -123,6 +142,6 @@ class UserController extends Controller
         $delete = User::find($id);
         $this->authorize('admin-user', $delete);
         $delete -> delete();
-        return redirect()->back();
+        return redirect()->back()->with('danger', 'User supprimer');
     }
 }

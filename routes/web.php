@@ -47,5 +47,6 @@ Route::post('/imageurl', [ImageController::class, 'storeurl']);
 Route::get('/choiceupload', [ImageController::class, 'indexchoice']);
 Route::get('/download/image/{id}', [ImageController::class, 'download']);
 Route::get('/download/url/{id}', [ImageController::class, 'downloadurl']);
+Route::delete('enlevetoi/{id}', [ImageController::class, 'destroy']);
 
 require __DIR__.'/auth.php';

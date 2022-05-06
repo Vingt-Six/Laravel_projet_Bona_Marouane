@@ -12,21 +12,21 @@
                 <h1 class="text-center text-2xl mb-6 text-gray-600 font-bold font-sans">Add Image in Gallery</h1>
                 <div>
                     <label class="text-gray-800 font-semibold block my-3 text-md" for="name">Name</label>
-                    <input class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none" type="text" name="name" placeholder="name" />
+                    <input class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none" type="text" name="name" value="{{ old('name') }}" placeholder="name" />
                 </div>
                 <div>
                     <label class="text-gray-800 font-semibold block my-3 text-md" for="email">Category</label>
                     <select name="categorie_id" class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none">
                         <option selected>Select a Category</option>
                         @foreach ($categories as $categorie)
-                            <option value="{{ $categorie -> id }}">{{ $categorie -> categorie }}</option>
+                            <option value="{{ $categorie -> id }}" {{ old('categorie_id') == $categorie->id ? 'selected' : null }}>{{ $categorie -> categorie }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div>
                     <label class="text-gray-800 font-semibold block my-3 text-md">Image URL</label>
                     <input class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none" type="text"
-                        name="url" />
+                        name="url" value="{{ old('url') }}" />
                 </div>
                 <button type="submit"
                     class="w-full mt-6 bg-indigo-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans">Add Image</button>

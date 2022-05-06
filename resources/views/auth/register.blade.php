@@ -45,7 +45,7 @@
                     <option selected>Select Avatar</option>
                     @foreach ($avatars as $avatar)
                         @if ($avatar->id != 1)
-                            <option value="{{ $avatar->id }}">{{ $avatar->name }}</option>
+                            <option value="{{ $avatar->id }}" {{ old('avatar_id') == $avatar->id ? 'selected' : null }}>{{ $avatar->name }}</option>
                         @endif
                     @endforeach
                 </select>
