@@ -26,9 +26,9 @@
         </section> --}}
 
     <!-- component -->
-    <main class="grid place-items-center p-5">
+    <main class="grid place-items-center p-5 bg-gradient-to-t from-blue-200 to-indigo-900 h-[90vh] overflow-scroll">
         <div>
-            <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold text-gray-800 mb-10 mt-5">Gallery</h1>
+            <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-10 mt-5">Gallery</h1>
             <section class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 @foreach ($images as $image)
                     <div class="bg-gray-900 shadow-lg rounded p-3">

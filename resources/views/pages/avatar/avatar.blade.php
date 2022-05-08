@@ -6,12 +6,12 @@
     </x-slot>
 
 
-    <section class="bg-slate-50 mt-14">
+    <section class="pt-14">
         <div>
             <div class="mt-8 flex justify-evenly flex-wrap">
                 @foreach ($avatars as $avatar)
                     @if ($avatar->id != 1)
-                        <div class="w-80 text-center rounded-xl shadow-xl mb-20 pb-10">
+                        <div class="w-80 text-center rounded-xl shadow-xl mb-20 pb-10 pt-10 bg-gradient-to-t from-gray-200 to-white">
                             @if ($avatar->src == null)
                                 <img class="h-56 object-center mx-auto rounded-lg"
                                     src="{{ asset('storage/' . $avatar->name . '.png') }}" alt="avatar" />
