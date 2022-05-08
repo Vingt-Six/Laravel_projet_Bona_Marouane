@@ -9,7 +9,7 @@
     <link
         href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
         rel="stylesheet">
-    <div class="flex items-center justify-center min-h-screen bg-gray-900">
+    <div class="flex items-center justify-center h-[90vh] bg-gray-900">
         <div class="col-span-12">
             <div class="overflow-auto lg:overflow-visible ">
                 <table class="table text-gray-400 border-separate space-y-6 text-sm">
@@ -74,6 +74,7 @@
                                 @endcan
                             </tr>
                         @endforeach
+                        {{ $users->links() }}
                     </tbody>
                 </table>
             </div>

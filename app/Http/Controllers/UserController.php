@@ -20,7 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(5);
         $avatars = Avatar::all();
         return view('pages.user.user', compact('users', 'avatars'));
     }

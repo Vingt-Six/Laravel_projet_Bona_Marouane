@@ -30,7 +30,7 @@
                 <select name="avatar_id" id="" class="rounded-lg">
                     @foreach ($avatars as $avatar)
                         @if ($avatar->id != 1)
-                            <option value="{{ $avatar->id }}" {{ old('avatar_id') == '' ? $avatar->id : old('avatar_id') }}>{{ $avatar->name }}
+                            <option value="{{ $avatar->id }}" {{ $avatar->id == $edit->avatar_id ? 'selected' : null }}>{{ $avatar->name }}
                             </option>
                         @endif
                     @endforeach
@@ -38,7 +38,7 @@
             </div>
             <div class="flex flex-col mt-3">
                 <label for="">Avatar</label>
-                <select name="avatar_id" id="" class="rounded-lg">
+                <select name="role_id" id="" class="rounded-lg">
                     @foreach ($roles as $role)
                         <option value="{{ $role->id }}"
                             {{ $role->id == $edit->role_id ? 'selected' : null }}>{{ $role->role }}
