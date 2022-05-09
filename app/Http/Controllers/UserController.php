@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\URL;
 class UserController extends Controller
 {
     public function __construct() {
-        $this->middleware('admin.co');
+        $this->middleware('admin.co')->except(['edit', 'update']);
     }
     /**
      * Display a listing of the resource.
@@ -69,7 +69,6 @@ class UserController extends Controller
     public function edit($id)
     {
         $edit = User::find($id);
-        $this->authorize('admin-user', $edit);
         $avatars = Avatar::all();
         return view('pages.user.edit', compact('edit', 'avatars'));
     }

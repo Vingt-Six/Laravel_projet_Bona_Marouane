@@ -30,11 +30,15 @@ class AvatarController extends Controller
      */
     public function create()
     {
+        $avatar = Avatar::all();
+        $this->authorize('max-avatar', $avatar);
         return view('pages.avatar.createavatar');
     }
 
     public function createurl()
     {
+        $avatar = Avatar::all();
+        $this->authorize('max-avatar', $avatar);
         return view('pages.avatar.createavatarurl');
     }
 
@@ -52,7 +56,6 @@ class AvatarController extends Controller
         ]);
 
         $store = new Avatar();
-        $this->authorize('max-avatar', $store);
         $store -> name = $request -> name;
         $store -> src = $request->file('src')->hashName();
         Storage::put('public/', $request->file('src'));
@@ -69,7 +72,6 @@ class AvatarController extends Controller
         ]);
 
         $store = new Avatar();
-        $this->authorize('max-avatar', $store);
         $store -> name = $request -> name;
         $file = $request->name . '.png';
         $content = file_get_contents($request->url);
