@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class CategorieController extends Controller
 {
+    public function __construct() {
+        $this->middleware('admin.co');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +17,8 @@ class CategorieController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Categorie::all();
+        return view('pages.categorie.categorie', compact('categories'));
     }
 
     /**
@@ -24,7 +28,7 @@ class CategorieController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.categorie.createcategorie');
     }
 
     /**
@@ -35,7 +39,14 @@ class CategorieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'categorie' => 'required|min:1|max:30',
+        ]);
+
+        $store = new Categorie();
+        $store -> categorie = $request -> categorie;
+        $store -> save();
+        return redirect('/categorie')->with('success', 'Categorie ajouter avec succès');
     }
 
     /**
@@ -57,7 +68,7 @@ class CategorieController extends Controller
      */
     public function edit(Categorie $categorie)
     {
-        //
+        return view('pages.categorie.editcategorie', compact('categorie'));
     }
 
     /**
@@ -69,7 +80,13 @@ class CategorieController extends Controller
      */
     public function update(Request $request, Categorie $categorie)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:1|max:30',
+        ]);
+
+        $categorie -> categorie = $request -> categorie;
+        $categorie -> save();
+        return redirect('/categorie')->with('succes', 'Categorie modifier avec succès');
     }
 
     /**
@@ -80,6 +97,7 @@ class CategorieController extends Controller
      */
     public function destroy(Categorie $categorie)
     {
-        //
+        $categorie -> delete();
+        return redirect()->back()->with('danger', 'Categorie bien supprimer');
     }
 }

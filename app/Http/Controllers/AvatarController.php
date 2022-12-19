@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Avatar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AvatarController extends Controller
 {
+    public function __construct() {
+        $this->middleware('admin.co');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,8 @@ class AvatarController extends Controller
      */
     public function index()
     {
-        //
+        $avatars = Avatar::all();
+        return view('pages.avatar.avatar', compact('avatars'));
     }
 
     /**
@@ -24,7 +30,16 @@ class AvatarController extends Controller
      */
     public function create()
     {
-        //
+        $avatar = Avatar::all();
+        $this->authorize('max-avatar', $avatar);
+        return view('pages.avatar.createavatar');
+    }
+
+    public function createurl()
+    {
+        $avatar = Avatar::all();
+        $this->authorize('max-avatar', $avatar);
+        return view('pages.avatar.createavatarurl');
     }
 
     /**
@@ -35,7 +50,35 @@ class AvatarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:1|max:30',
+            'src' => 'required',
+        ]);
+
+        $store = new Avatar();
+        $store -> name = $request -> name;
+        $store -> src = $request->file('src')->hashName();
+        Storage::put('public/', $request->file('src'));
+        $store -> url = null;
+        $store -> save();
+        return redirect('/avatar')->with('success', 'Avatar créer avec succès');
+    }
+
+    public function storeurl(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|min:1|max:30',
+            'url' => 'required',
+        ]);
+
+        $store = new Avatar();
+        $store -> name = $request -> name;
+        $file = $request->name . '.png';
+        $content = file_get_contents($request->url);
+        $store->url = file_put_contents('storage/'. $file, $content);
+        $store -> src = null;
+        $store -> save();
+        return redirect('/avatar')->with('success', 'Avatar créer avec succès');
     }
 
     /**
@@ -80,6 +123,10 @@ class AvatarController extends Controller
      */
     public function destroy(Avatar $avatar)
     {
-        //
+        $avatar -> delete();
+        if ($avatar->id > 6) {
+            Storage::delete('public/'. $avatar->src);
+        }
+        return redirect()->back()->with('danger', 'Avatar supprimer avec succès');
     }
 }
